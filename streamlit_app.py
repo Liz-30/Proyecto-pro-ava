@@ -66,29 +66,32 @@ def do_chart1():
         font=dict(family="Arial", size=12, color="black"),
     )
     st.plotly_chart(fig, use_container=True)
-    st.markdown("*Gráfica 1: El gráfico representa la proporción expresada en porcentajes de la cantidad de residuos sólidos domiciliarios por año*")
-    st.info('En la gráfica se logra observar la comparación de la cantidad de residuos sólidos domiciliarios que fueron registrados durante el periodo 2019 al 2022 y la proporción que representan respecto al 100% del total de los datos registrados, de los cuales se puede destacar que el año 2019 y 2020 tienen un porcentaje igual de distribución y lo mismo se logra observar para los años 2021 y 2022, pero es importante destacar que los 2 últimos años del periodo fueron los que mayor porcentaje de residuos sólidos domiciliarios registraron. ', icon="😀")
+    st.markdown("***Gráfica 1:*** *El gráfico representa la proporción expresada en porcentajes de la cantidad de residuos sólidos domiciliarios por año*")
+    st.info('''**Interpretación** 
+     \n En la gráfica se logra observar la comparación de la cantidad de residuos sólidos domiciliarios que fueron registrados durante el periodo 2019 al 2022 y la proporción que representan respecto al 100% del total de los datos registrados, de los cuales se puede destacar que el año 2019 y 2020 tienen un porcentaje igual de distribución y lo mismo se logra observar para los años 2021 y 2022, pero es importante destacar que los 2 últimos años del periodo fueron los que mayor porcentaje de residuos sólidos domiciliarios registraron. 
+     ''', icon="🧐")
 # Función para generar el segundo gráfico
 def do_chart2():
     sum_residuos_urbanos = df.groupby("DEPARTAMENTO")["QRESIDUOS_DOM"].sum().reset_index()
     sum_residuos_urbanos.rename(columns={"QRESIDUOS_DOM": "Residuos Domiciliarios Urbanos"}, inplace=True)
     fig = px.scatter(sum_residuos_urbanos, x="DEPARTAMENTO", y="Residuos Domiciliarios Urbanos",
                     size="Residuos Domiciliarios Urbanos", color="DEPARTAMENTO",
-                    hover_name="DEPARTAMENTO", title="Residuos sólidos domiciliarios urbanos Ton/Año por Departamento",
+                    hover_name="DEPARTAMENTO", title="Residuos sólidos domiciliarios urbanos Ton/Año por departamento | 2019 - 2022",
                     labels={"Residuos Domiciliarios asdflj": "Residuos Domiciliarios Urbanos", "DEPARTAMENTO": "Departamento"},
                     size_max=60,
                     color_discrete_sequence=px.colors.qualitative.Set3)
-    fig.update_yaxes(title_text="Residuos Domiciliarios Urbanos 2019 - 2022")
+    fig.update_yaxes(title_text="Residuos Domiciliarios Urbanos")
     fig.update_layout(xaxis_tickangle=-45)
     fig.update_layout(
         xaxis=dict(title='Departamento'),
-        yaxis=dict(title='Residuos Domiciliarios Urbanos 2019 - 2022'),
+        yaxis=dict(title='Residuos Domiciliarios Urbanos'),
         template="plotly_dark",
         font=dict(family="Arial", size=12, color="white"),
     )
     st.plotly_chart(fig)
-    st.markdown("*Gráfica 2: El gráfico representa los residuos domiciliarios urbanos por departamento expresada en millones de toneladas*")
-    st.warning('En el gráfico presentado podemos observar que  en  la capital del Perú Lima, es una de las ciudades más urbanizadas , de igual forma la más poblada del país y, por lo tanto, genera una gran cantidad de residuos sólidos domiciliarios.  ', icon="😀")
+    st.markdown("***Gráfica 2:*** *El gráfico representa los residuos domiciliarios urbanos por departamento expresada en millones de toneladas*")
+    st.info('''**Interpretación** 
+    \n En el gráfico presentado podemos observar que  en  la capital del Perú Lima, es una de las ciudades más urbanizadas , de igual forma la más poblada del país y, por lo tanto, genera una gran cantidad de residuos sólidos domiciliarios. ''', icon="🧐")
 # Función para generar el tercer gráfico
 def do_chart3():
     saved_df = st.session_state['df_guardado']  
@@ -118,8 +121,9 @@ def do_chart3():
         showlegend=True  # Ocultar la leyenda, ya que el color se usa para departamentos
     )
     st.plotly_chart(fig)
-    st.markdown("*Gráfica 3: La gráfica muestra la diferencia de consumos de residuos sólidos domiciliarios por departamento con su respectiva región.*")
-    st.info('Tener en cuenta que el territorio  peruano está dividido en 3 regiones naturales: costa, sierra y selva. Esta división se basa en las características topográficas y climáticas de cada región,es por ello, que en la gráfica se puede apreciar que el mismo departamento se encuentra en diferentes regiones. Por ejemplo, el departamento de Piura que se encuentra ubicado en la zona norte del país, está distribuido geográficamente en la costa y sierra, como consecuencia se pueden apreciar playas, ríos y montañas dentro de un mismo territorio.', icon="🔎")
+    st.markdown("***Gráfica 3:*** *La gráfica muestra la diferencia de consumos de residuos sólidos domiciliarios por departamento con su respectiva región.*")
+    st.info('''**Interpretación**
+    \n Tener en cuenta que el territorio  peruano está dividido en 3 regiones naturales: costa, sierra y selva. Esta división se basa en las características topográficas y climáticas de cada región,es por ello, que en la gráfica se puede apreciar que el mismo departamento se encuentra en diferentes regiones. Por ejemplo, el departamento de Piura que se encuentra ubicado en la zona norte del país, está distribuido geográficamente en la costa y sierra, como consecuencia se pueden apreciar playas, ríos y montañas dentro de un mismo territorio.''', icon="🧐")
 # Función para generar el cuarto gráfico    
 def do_chart4():
     # Access the DataFrame from session state
@@ -184,8 +188,9 @@ def do_chart4():
     )
     # Mostrar el gráfico
     st.plotly_chart(fig)
-    st.markdown("*La gráfica muestra la cantidad de consumo de residuos sólidos con su respectiva clasificación.*")
-    st.info('''Según el Ministerio del Ambiente los residuos sólidos orgánicos se dividen en 34 tipos, en los cuales se pueden clasificar en cuatro grandes grupos: orgánicos, inorgánicos, no aprovechables y peligrosos. Dicha gráfica tiene la facilidad de identificar qué categoría prevalece más, es decir, que conjunto de residuos es más consumido en cada departamento.
+    st.markdown("**Gráfica 4:** *La gráfica muestra la cantidad de consumo de residuos sólidos con su respectiva clasificación.*")
+    st.info('''**Interpretación**
+    \n Según el Ministerio del Ambiente los residuos sólidos orgánicos se dividen en 34 tipos, en los cuales se pueden clasificar en cuatro grandes grupos: orgánicos, inorgánicos, no aprovechables y peligrosos. Dicha gráfica tiene la facilidad de identificar qué categoría prevalece más, es decir, que conjunto de residuos es más consumido en cada departamento.
 
 **Orgánicos:** Son aquellos desechos biodegradables de origen vegetal o animal que pueden descomponerse en la naturaleza sin demasiada dificultad y transformarse en otro tipo de materia orgánica , 
 
@@ -194,7 +199,7 @@ def do_chart4():
 **No aprovechables:** Son aquellos desechos que no pueden ser reutilizados, reciclados o transformados en otros productos.
 
 **Peligrosos:** Son aquellos residuos que, debido a sus propiedades corrosivas, explosivas, tóxicas, inflamables o radiactivas, pueden causar daños o efectos indeseados a la salud o al ambiente.
-''', icon="🔎")
+''', icon="🧐")
 # Función para generar el quinto gráfico
 def do_chart5():
     # Multiplicar las columnas para obtener "RESIDUOS URBANA" y "RESIDUOS RURAL"
@@ -222,14 +227,12 @@ def do_chart5():
         yaxis=dict(title='Cantidad de Residuos'),
         legend=dict(title="Tipo de Residuos"),
     )
-
     # Mostrar el gráfico
     st.plotly_chart(fig)
-    st.markdown("*Gráfica 5:  El gráfico representa  la cantidad de consumo de residuos en la zona urbana y rural en su respectivo departamento.*")
-    st.success(
-    """
-    En la gráfica se logra observar que la mayoría de los residuos sólidos que provienen de las zonas urbanas es en mayor cantidad con respecto a los residuos de las zonas rurales, factores como la densidad de población y estilo de vida son los responsables de dichos resultados. Por ejemplo, en las zonas urbanas las personas tienden a consumir más productos desechables envasados, generando así que la cantidad de residuos sólidos aumente, a diferencia de la población en las zonas rurales quienes tiende a consumir más productos frescos y a granel, permitiendo que la cantidad de residuos sólidos se reduzca.
-    """, icon='🔎')
+    st.markdown("***Gráfica 5:***  *El gráfico representa  la cantidad de consumo de residuos en la zona urbana y rural en su respectivo departamento.*")
+    st.info("""**Interpretación**
+    \n En la gráfica se logra observar que la mayoría de los residuos sólidos que provienen de las zonas urbanas es en mayor cantidad con respecto a los residuos de las zonas rurales, factores como la densidad de población y estilo de vida son los responsables de dichos resultados. Por ejemplo, en las zonas urbanas las personas tienden a consumir más productos desechables envasados, generando así que la cantidad de residuos sólidos aumente, a diferencia de la población en las zonas rurales quienes tiende a consumir más productos frescos y a granel, permitiendo que la cantidad de residuos sólidos se reduzca.
+    """, icon='🧐')
 # Función para mostrar información sobre el proyecto
 def do_acerca():
     st.image('basurero.jpg', caption="Basura en la playa", use_column_width=True)
@@ -248,7 +251,7 @@ Los Estudios de caracterización de residuos sólidos municipales, que se estand
 """,  unsafe_allow_html=True)
 # Función para mostrar información de nosotros
 def do_nosotros():
-    # st.markdown("<h4 class='title_text'>¿Quiénes somos?</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 class='title_text'>¿Quiénes somos?</h4>", unsafe_allow_html=True)
     st.markdown("<p class='desc_text'>Somos estudiantes del cuarto semestre de la carrera de ingeniería ambiental de la Universidad Peruana Cayetano Heredia (UPCH). Nos apasiona el procesamiento y visualización de datos para mejorar y comprender la problemática ambiental y brindar información sobre los residuos sólidos generados en el Perú.</p>", unsafe_allow_html=True)
     # Crear dos columnas
     col1, col2 = st.columns(2)
@@ -301,8 +304,12 @@ menu = {
     'title': 'Menu principal',  # Título del menú principal
     'items': { 
         'Inicio' : {  # Primer elemento del menú principal
-            'action': None,  # Acción a realizar al seleccionar este elemento (None indica ninguna acción)
+            'action': do_acerca,  # Acción a realizar al seleccionar este elemento (None indica ninguna acción)
             'item_icon': 'house',  # Ícono asociado al elemento ('house' en este caso)
+        },
+        'Gráficos' : {  # Segundo elemento del menú principal
+            'action': None,  # Acción a realizar al seleccionar este elemento (do_acerca en este caso)
+            'item_icon': 'info-square',  # Ícono asociado al elemento ('info-square' en este caso)
             'submenu': {  # Submenú asociado al elemento 'Inicio'
                 'title': None,  # Título del submenú (None indica sin título)
                 'items': {  # Elementos del submenú
@@ -317,22 +324,7 @@ menu = {
                 'with_view_panel': 'main',  # Indica dónde mostrar el contenido del submenú (en el área principal)
                 'orientation': 'horizontal',  # Orientación del submenú (horizontal en este caso)
                 'styles': styles  # Estilos del submenú
-            }
-        },
-        'Acerca' : {  # Segundo elemento del menú principal
-            'action': do_acerca,  # Acción a realizar al seleccionar este elemento (do_acerca en este caso)
-            'item_icon': 'info-square',  # Ícono asociado al elemento ('info-square' en este caso)
-             'submenu': {  # Submenú asociado al elemento 'Acerca'
-                'title': None,  # Título del submenú (None indica sin título)
-                'items': {  # Elementos del submenú
-                    'Definición' : {'action': None, 'item_icon': '-', 'submenu': None},  # Elemento 1 del submenú
-                },
-                'menu_icon': None,  # Ícono asociado al submenú (None indica sin ícono)
-                'default_index': 0,  # Índice predeterminado al cargar el submenú
-                'with_view_panel': 'main',  # Indica dónde mostrar el contenido del submenú (en el área principal)
-                'orientation': 'horizontal',  # Orientación del submenú (horizontal en este caso)
-                'styles': styles  # Estilos del submenú
-            }
+            } 
         },
         'Nosotros' : {  # Tercer elemento del menú principal
             'action': None,  # Acción a realizar al seleccionar este elemento (None indica ninguna acción)
@@ -340,7 +332,7 @@ menu = {
             'submenu': {  # Submenú asociado al elemento 'Nosotros'
                 'title': None,  # Título del submenú (None indica sin título)
                 'items': {  # Elementos del submenú
-                    '¿Quiénes somos?' : {'action': do_nosotros, 'item_icon': '-', 'submenu': None}  # Elemento 1 del submenú
+                    'Nosotros' : {'action': do_nosotros, 'item_icon': '-', 'submenu': None}  # Elemento 1 del submenú
                 },
                 'menu_icon': None,  # Ícono asociado al submenú (None indica sin ícono)
                 'default_index': 0,  # Índice predeterminado al cargar el submenú
@@ -366,6 +358,12 @@ def show_menu(menu):
     def _get_icons(menu):
         icons = [v['item_icon'] for _k, v in menu['items'].items()]
         return icons
+    def is_submenu_selected(menu, submenu_name):
+        items = menu.get('items')
+        if items and submenu_name in items:
+            submenu = items[submenu_name].get('submenu')
+            return submenu is not None
+        return False
     # Configuración de parámetros para la función de menú
     kwargs = {
         'menu_title': menu['title'],
@@ -387,24 +385,22 @@ def show_menu(menu):
     else:
         # Lanzar una excepción si el tipo de panel de vista no es reconocido
         raise ValueError(f"Unknown view panel value: {with_view_panel}. Must be 'sidebar' or 'main'.")
-    # Lógica para manejar la selección del menú "Inicio"
-    if menu_selection == 'Inicio':
-        if menu['items'][menu_selection]['submenu']:
-            col1, col2 = st.columns(2)
-            selected_year = col1.slider("Seleccione año:", min(df["PERIODO"].unique()), max(df["PERIODO"].unique()))
-            st.session_state['anio_seleccionado'] = selected_year
-            filtered_year = df[df["PERIODO"] == selected_year]
-            reg_nat_values = filtered_year["REG_NAT"].unique()
-            reg_nat_values = reg_nat_values[~pd.isna(reg_nat_values)]  # Excluir valores NaN
-            selected_reg_nat = col2.radio("Seleccione región natural:", reg_nat_values, horizontal=True)
-            st.session_state['df_guardado'] = filtered_year[filtered_year["REG_NAT"] == selected_reg_nat]
-            st.toast('Seleccionaste año: '+str(selected_year)+' 📅', icon='❤')
-            st.toast('Seleccionaste región: '+selected_reg_nat+' ⛰️', icon='😍')
-    # Lógica para mostrar submenú si está presente
-    if menu['items'][menu_selection]['submenu']:
+    # Lógica para manejar la selección del menú "Acerca"
+    if menu_selection == 'Gráficos':
+        col1, col2 = st.columns(2)
+        selected_year = col1.slider("Seleccione año:", min(df["PERIODO"].unique()), max(df["PERIODO"].unique()))
+        st.session_state['anio_seleccionado'] = selected_year
+        filtered_year = df[df["PERIODO"] == selected_year]
+        reg_nat_values = filtered_year["REG_NAT"].unique()
+        reg_nat_values = reg_nat_values[~pd.isna(reg_nat_values)]  # Excluir valores NaN
+        selected_reg_nat = col2.radio("Seleccione región natural:", reg_nat_values, horizontal=True)
+        st.session_state['df_guardado'] = filtered_year[filtered_year["REG_NAT"] == selected_reg_nat]
+        st.toast('Seleccionaste año: '+str(selected_year)+' 📅', icon='❤')
+        st.toast('Seleccionaste región: '+selected_reg_nat+' ⛰️', icon='😍')
+    
+    if 'submenu' in menu['items'][menu_selection] and menu['items'][menu_selection]['submenu']:
         show_menu(menu['items'][menu_selection]['submenu'])
-    # Lógica para ejecutar la acción asociada si está presente
-    if menu['items'][menu_selection]['action']:
+    if 'action' in menu['items'][menu_selection] and menu['items'][menu_selection]['action']:
         menu['items'][menu_selection]['action']()
 # Mostrar una imagen en la barra lateral usando Streamlit
 st.sidebar.image('https://www.precayetanovirtual.pe/moodle/pluginfile.php/1/theme_mb2nl/loadinglogo/1692369360/logo-cayetano.png', use_column_width=True)
