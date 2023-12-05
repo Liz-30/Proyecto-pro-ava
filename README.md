@@ -16,7 +16,7 @@ ii.	Los Estudios de caracterización de residuos sólidos municipales, que se es
 
 
 **LINK de la app web desplegado en Streamlit Cloud:**
-https://residuos.streamlit.app
+https://residuos-solidos-domiciliarios-23.streamlit.app/
 
 *residuos domiciliarios*
 
