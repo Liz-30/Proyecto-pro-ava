@@ -236,7 +236,7 @@ def do_chart5():
 # Función para mostrar información sobre el proyecto
 def do_acerca():
     st.image('basurero.jpg', caption="Basura en la playa", use_column_width=True)
-    st.link_button("Ir a código del proyecto", "https://github.com/summermp/streamlit", type='primary')
+    st.link_button("Ir a código del proyecto", "https://github.com/Liz-30/Proyecto-pro-ava", type='primary')
     st.markdown("""
 <p class='desc_text'> La base de datos de composición de residuos sólidos domiciliarios corresponde a la información sobre la distribución de los residuos sólidos del ámbito domiciliario generados por tipo (medido en tonelada). Dicha información, fue obtenida desde los años 2019 hasta el 2022, con respecto a todos los departamentos de nuestro país.</br></br>
 La información que se toma de insumo para la estimación de esta estadística es obtenida a partir de dos fuentes de información: </br></br>
