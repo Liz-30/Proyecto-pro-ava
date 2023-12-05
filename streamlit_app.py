@@ -21,7 +21,7 @@ text_style = """
 """
 st.markdown(text_style, unsafe_allow_html=True)
 # Título principal del Dashboard
-st.markdown("<h3 class='title_text'>Composición anual de residuos sólidos domiciliarios de los departamenos del Perú (2019-2022)<h3>" , unsafe_allow_html=True)
+st.markdown("<h3 class='title_text'>Composición anual de residuos sólidos domiciliarios de los departamentos del Perú (2019-2022)<h3>" , unsafe_allow_html=True)
 # Cargar el archivo CSV en un DataFrame
 file_path = "D. Composición Anual de residuos domiciliarios_Distrital_2019_2022.csv"
 df = pd.read_csv(file_path, encoding="ISO-8859-1", delimiter=";", index_col=0, usecols=lambda x: 'Unnamed' not in x)
